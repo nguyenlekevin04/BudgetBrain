@@ -48,7 +48,3 @@ def extract_saving_goal(user_input: str) -> SavingGoal:
         response_format=SavingGoal
         )
     return client_call.choices[0].message.parsed
-
-if __name__ == "__main__":
-    result = extract_saving_goal("I want to save 5000 Euro by December 31, 2026.")
-    print(result)
