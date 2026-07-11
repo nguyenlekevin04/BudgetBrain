@@ -4,7 +4,13 @@ The model ensures that the data adheres to the specified types and formats, prov
 """
 from pydantic import BaseModel, Field
 from datetime import date
+from dotenv import load_dotenv
+from openai import OpenAI
+import os
 
+load_dotenv()
+
+print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
 class SavingGoal(BaseModel):
     """
     A Pydantic model representing a saving goal with a date and amount.
