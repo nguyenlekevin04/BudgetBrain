@@ -3,7 +3,9 @@ This module contains the `calculate_savings_rate` function, which calculates the
 It takes into account the current balance and the target amount, and raises exceptions for invalid inputs.
 """
 from engine.extraction import SavingGoal
+from model.preprocessing import load_and_clean_data
 from datetime import date
+from pathlib import Path
 
 def calculate_savings_rate(current_balance: float, goal: SavingGoal) -> float:
     """
@@ -27,3 +29,14 @@ def calculate_savings_rate(current_balance: float, goal: SavingGoal) -> float:
         return 0.0
     else:
         return missing_amount / remaining_months
+    
+def get_current_balance(path: str) -> float:
+    """
+    Get the current balance from a cleaned CSV file.
+    Parameters:
+        path (str): The path to the cleaned CSV file containing financial data.
+    Returns:
+        float: The current balance extracted from the last row of the cleaned DataFrame.
+    """
+    df = load_and_clean_data(path)
+    return df['Balance'].iloc[-1]
