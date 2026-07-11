@@ -9,11 +9,6 @@ import os
 
 load_dotenv()
 
-client = OpenAI(
-    base_url="https://models.github.ai/inference",
-    api_key=os.getenv("GITHUB_TOKEN")
-)
-
 class SavingGoal(BaseModel):
     """
     A Pydantic model representing a saving goal with a date and amount.
@@ -32,6 +27,11 @@ def extract_saving_goal(user_input: str) -> SavingGoal:
     Returns:
         SavingGoal: An instance of the SavingGoal model containing the extracted target date and amount.
     """
+    client = OpenAI(
+        base_url="https://models.github.ai/inference",
+        api_key=os.getenv("GITHUB_TOKEN")
+    )
+    
     client_call = client.beta.chat.completions.parse(
         model="gpt-4o-mini",
         messages=[
