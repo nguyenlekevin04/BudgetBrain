@@ -1,6 +1,5 @@
 """
-This module defines a Pydantic model for representing a saving goal, which includes a target date and a target amount. 
-The model ensures that the data adheres to the specified types and formats, providing validation and serialization capabilities.
+Extraction module for extracting saving goal information from user input using the OpenAI API.
 """
 from pydantic import BaseModel, Field
 from datetime import date

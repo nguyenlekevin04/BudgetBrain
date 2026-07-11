@@ -1,7 +1,5 @@
 """
-This module contains functions for loading and cleaning financial data from a CSV file. The main function, 
-`load_and_clean_data`, reads the data, removes unnecessary columns, filters out reverted transactions, and handles duplicate dates. 
-The cleaned data is then returned as a pandas DataFrame. Additionally, the `write_cleaned_data` function allows saving the cleaned DataFrame to a specified CSV file.
+Preprocesses financial data by loading it from a CSV file, cleaning it, and preparing it for further analysis or modeling.
 """
 from pathlib import Path
 import pandas as pd

@@ -1,6 +1,5 @@
 """
-Trains a baseline regression model to predict account balance N days ahead,
-using calendar-based features from features.py.
+Trains a regression model to predict future balances based on historical financial data using a random linear regression model and calendar features from features.py.
 """
 from pathlib import Path
 from sklearn.linear_model import LinearRegression

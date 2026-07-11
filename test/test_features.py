@@ -1,6 +1,5 @@
 """
-This module contains tests for the feature engineering functions in the `features.py` module. 
-The tests ensure that the feature building process works correctly and produces the expected output.
+Unit tests for the build_features function (features.py).
 """
 from model.features import build_features
 import pandas as pd

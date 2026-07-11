@@ -1,6 +1,5 @@
 """
-This module contains unit tests for the `preprocessing.py` module, specifically testing the `load_and_clean_data` function. 
-The tests ensure that the function correctly loads and cleans financial data from a CSV file, verifying that the resulting DataFrame has the expected structure and content.
+Unit tests for the load_and_clean_data function (preprocessing.py).
 """
 from model.preprocessing import load_and_clean_data
 from pathlib import Path

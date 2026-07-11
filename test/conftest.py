@@ -1,6 +1,5 @@
 """
-This module contains pytest fixtures for testing purposes. 
-The fixtures provide sample data and setup for tests, allowing for consistent and reusable test environments.
+Shared fixtures for all test files in this directory.
 """
 import pandas as pd
 from pathlib import Path
@@ -61,8 +60,7 @@ def raw_revolut_csv_gap(tmp_path: Path) -> Path:
 @pytest.fixture
 def cleaned_df() -> pd.DataFrame:
     """
-    Provide a minimal cleaned DataFrame (as if output by load_and_clean_data)
-    for testing build_features in isolation.
+    Create a cleaned DataFrame with sample financial data for testing feature engineering.
     Returns:
         pd.DataFrame: A cleaned DataFrame with sample financial data.
     """
@@ -73,9 +71,9 @@ def cleaned_df() -> pd.DataFrame:
 @pytest.fixture
 def balance_df() -> pd.DataFrame:
     """
-    Provide a minimal DataFrame with a 'Balance' column for testing create_target in isolation.
+    Create a DataFrame with sample financial data containing a 'Balance' column for testing purposes.
     Returns:
-        pd.DataFrame: A DataFrame with sample financial data containing a 'Balance' column.
+        pd.DataFrame: A DataFrame with sample financial data containing a 'Balance' column and a 'Date' column.
     """
     return pd.DataFrame({
         'Date': pd.date_range(start='2024-01-01', periods=10, freq='D'),
