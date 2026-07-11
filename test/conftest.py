@@ -57,3 +57,16 @@ def raw_revolut_csv_gap(tmp_path: Path) -> Path:
     path = tmp_path / "sample_gap.csv"
     df.to_csv(path, index=False)
     return path
+
+@pytest.fixture
+def cleaned_df() -> pd.DataFrame:
+    """
+    Provide a minimal cleaned DataFrame (as if output by load_and_clean_data)
+    for testing build_features in isolation.
+    Returns:
+        pd.DataFrame: A cleaned DataFrame with sample financial data.
+    """
+    return pd.DataFrame({
+        'Date': pd.to_datetime(['2024-01-01', '2024-01-02', '2024-02-15']),
+        'Balance': [1000.0, 1050.0, 900.0],
+    })
