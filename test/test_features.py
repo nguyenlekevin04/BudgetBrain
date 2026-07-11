@@ -13,8 +13,12 @@ def test_build_features(cleaned_df: pd.DataFrame) -> None:
     """
     df_features = build_features(cleaned_df)
 
-    assert df_features['Day'].iloc[0] == 1
-    assert df_features['Weekday'].iloc[0] == 0
+    assert len(df_features) == 10
+    assert df_features['Date'].iloc[0] == pd.Timestamp('2024-01-31')
+    assert df_features['Balance_lag_30'].iloc[0] == 1000.0
+    assert df_features['Balance_lag_7'].iloc[0] == 1023.0
+    assert df_features['Rolling_mean_30'].iloc[0] == 1015.5
+    assert df_features['Day'].iloc[0] == 31
+    assert df_features['Weekday'].iloc[0] == 2
     assert df_features['Month'].iloc[0] == 1
-    assert df_features['Days_since_start'].iloc[0] == 0
-    assert df_features['Days_since_start'].iloc[-1] == 45
+    assert df_features['Days_since_start'].iloc[0] == 30

@@ -17,4 +17,11 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     df['Weekday'] = df['Date'].dt.weekday
     df['Month'] = df['Date'].dt.month
     df['Days_since_start'] = (df['Date'] - df['Date'].min()).dt.days
+
+    df['Balance_lag_7'] = df['Balance'].shift(7)
+    df['Balance_lag_30'] = df['Balance'].shift(30)
+    df['Rolling_mean_30'] = df['Balance'].rolling(window=30).mean()
+
+    df = df.dropna().reset_index(drop=True)
     return df
+
