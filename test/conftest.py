@@ -1,6 +1,8 @@
 """
 Shared fixtures for all test files in this directory.
 """
+from engine.extraction import SavingGoal
+from datetime import date, timedelta
 import pandas as pd
 from pathlib import Path
 import pytest
@@ -77,5 +79,23 @@ def balance_df() -> pd.DataFrame:
     """
     return pd.DataFrame({
         'Date': pd.date_range(start='2024-01-01', periods=10, freq='D'),
-        'Balance': [1000.0 + i * 10 for i in range(10)],  # 1000, 1010, ..., 1090
+        'Balance': [1000.0 + i * 10 for i in range(10)],
     })
+
+@pytest.fixture
+def saving_goal() -> SavingGoal:
+    """
+    Create a SavingGoal instance for testing purposes.
+    Returns:
+        SavingGoal: An instance of the SavingGoal model with a target date and amount.
+    """
+    return SavingGoal(target_date=date.today() + timedelta(days=50), target_amount=1000.0)
+
+@pytest.fixture
+def current_balance() -> float:
+    """
+    Create a current balance value for testing purposes.
+    Returns:
+        float: A sample current balance value.
+    """
+    return 500.0
