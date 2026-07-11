@@ -69,3 +69,15 @@ def cleaned_df() -> pd.DataFrame:
     dates = pd.date_range(start='2024-01-01', periods=40, freq='D')
     balances = [1000.0 + i for i in range(40)]
     return pd.DataFrame({'Date': dates, 'Balance': balances})
+
+@pytest.fixture
+def balance_df() -> pd.DataFrame:
+    """
+    Provide a minimal DataFrame with a 'Balance' column for testing create_target in isolation.
+    Returns:
+        pd.DataFrame: A DataFrame with sample financial data containing a 'Balance' column.
+    """
+    return pd.DataFrame({
+        'Date': pd.date_range(start='2024-01-01', periods=10, freq='D'),
+        'Balance': [1000.0 + i * 10 for i in range(10)],  # 1000, 1010, ..., 1090
+    })

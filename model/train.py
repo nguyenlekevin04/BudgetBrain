@@ -7,8 +7,8 @@ from sklearn.linear_model import LinearRegression
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
-from preprocessing import load_and_clean_data, write_cleaned_data
-from features import build_features
+from model.preprocessing import load_and_clean_data, write_cleaned_data
+from model.features import build_features
 
 def create_target(df: pd.DataFrame, horizon_days: int) -> pd.DataFrame:
     """
