@@ -1,6 +1,4 @@
 """
-features.py
-
 This module contains functions for building additional features from the cleaned financial data.
 """
 import pandas as pd
@@ -12,7 +10,7 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     Parameters:
         df (pd.DataFrame): The cleaned DataFrame containing financial data.
     Returns:
-        pd.DataFrame: A DataFrame with additional features added.
+        df (pd.DataFrame): A DataFrame with additional features added.
     """
     df = df.copy()
     df['Day'] = df['Date'].dt.day
