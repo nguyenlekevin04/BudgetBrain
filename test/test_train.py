@@ -1,3 +1,7 @@
+"""
+This module contains unit tests for the `train.py` module, specifically testing the `create_target` and `train_test_split_by_time` functions. 
+The tests ensure that the target column is correctly created and that the data is split into training and testing sets based on chronological order.
+"""
 import pandas as pd
 from model.train import create_target, train_test_split_by_time
 
