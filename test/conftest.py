@@ -66,7 +66,6 @@ def cleaned_df() -> pd.DataFrame:
     Returns:
         pd.DataFrame: A cleaned DataFrame with sample financial data.
     """
-    return pd.DataFrame({
-        'Date': pd.to_datetime(['2024-01-01', '2024-01-02', '2024-02-15']),
-        'Balance': [1000.0, 1050.0, 900.0],
-    })
+    dates = pd.date_range(start='2024-01-01', periods=40, freq='D')
+    balances = [1000.0 + i for i in range(40)]
+    return pd.DataFrame({'Date': dates, 'Balance': balances})
