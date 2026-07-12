@@ -1,3 +1,6 @@
+"""
+Categorization functions for processing input text and assigning it to predefined categories.
+"""
 from sentence_transformers import SentenceTransformer, util
 import mlflow
 
