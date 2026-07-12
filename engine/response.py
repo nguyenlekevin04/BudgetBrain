@@ -1,3 +1,7 @@
+"""
+This module defines the response generation logic for providing savings advice based on the user's financial data and savings goal. 
+It includes a Pydantic model for structuring the response and a function to generate the response using OpenAI's API.
+"""
 from engine.extraction import SavingGoal
 from engine.categorization import categorize_data, aggregate_by_category
 from pydantic import BaseModel, Field
