@@ -1,47 +1,51 @@
 from sentence_transformers import SentenceTransformer, util
+import mlflow
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
-
 CATEGORIES = ["fuel", "insurance", "maintenance","groceries", "government fees", "parking", "transfer"]
 
-test_cases = [
-    ("JET", "fuel"),
-    ("Ordnungsamt Dresden fee", "government fees"),
-    ("NORMA grocery store", "groceries"),
-    ("Allianz insurance", "insurance"),
-    ("Payment from KEVIN LE NGUYEN", "transfer"),
-    ("STAR Tankstelle", "fuel"),
-    ("HEM Tankstelle", "fuel"),
-    ("To Bundeskasse DO Halle", "government fees"),
-    ("Aral Tankstelle", "fuel"),
-    ("TÜV inspection", "maintenance"),
-    ("autodoc.de", "maintenance"),
-    ("reifen.com", "maintenance"),
-]
-
-def evaluate_categorization(test_cases: list[tuple[str, str]], categories: list[str]) -> float:
+def transform_input(input_text: str) -> str:
     """
-    Evaluate the accuracy of the categorization model using cosine similarity.
+    Transform the input text into a predefined category based on specific keywords.
     Parameters:
-        test_cases (list[tuple[str, str]]): A list of tuples containing input text and expected category.
-        categories (list[str]): A list of predefined categories for categorization.
+        input_text (str): The input text to be transformed.
     Returns:
-        float: The accuracy of the categorization model as a percentage.
+        str: The corresponding category if a keyword match is found; otherwise, None.
     """
-    counter = 0
-    embeddings_categories = model.encode(categories, convert_to_tensor=True)
+    keyword_map = {
+        "jet": "fuel",
+        "star": "fuel",
+        "hem": "fuel",
+        "aral": "fuel",
+        "totalenergies": "fuel",
+        "allianz": "insurance",
+        "tüv": "maintenance",
+        "autodoc": "maintenance",
+        "reifen": "maintenance",
+        "norma": "groceries",
+        "ordnungsamt": "government fees",
+        "bundeskasse": "government fees",
+        "payment from": "transfer"
+    }
+    for keyword in keyword_map:
+        if keyword in input_text.lower():
+            return keyword_map[keyword]
+    return None
 
-    for input_text, expected_category in test_cases:
+def categorize_input(input_text: str) -> str:
+    """
+    Categorize the input text into one of the predefined categories using cosine similarity and keyword mapping.
+    Parameters:
+        input_text (str): The input text to be categorized.
+    Returns:
+        str: The predicted category based on cosine similarity or keyword mapping.
+    """
+    transformed_text = transform_input(input_text)
+    if transformed_text:
+        return transformed_text
+    else:
+        embeddings_categories = model.encode(CATEGORIES, convert_to_tensor=True)
         embedding_input = model.encode(input_text, convert_to_tensor=True)
         cosine_scores = util.cos_sim(embedding_input, embeddings_categories)
-        predicted_category = categories[cosine_scores.argmax()]
-
-        print(f"Input: {input_text} | Predicted: {predicted_category} | Expected: {expected_category}")
-
-        if predicted_category == expected_category:
-            counter += 1
-    
-    return counter / len(test_cases)
-
-accuracy = evaluate_categorization(test_cases, CATEGORIES)
-print(f"Accuracy: {accuracy:.2%}")
+        predicted_category = CATEGORIES[cosine_scores.argmax()]
+        return predicted_category
