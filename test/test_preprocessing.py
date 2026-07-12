@@ -29,6 +29,5 @@ def test_load_and_clean_data_fills_columns(raw_revolut_csv_gap: Path) -> None:
     df = load_and_clean_data(raw_revolut_csv_gap)
 
     assert len(df) == 4
-
     filled_rows = df[df['Date'] == pd.Timestamp('2024-01-02')]
     assert filled_rows['Balance'].values[0] == 1100.0

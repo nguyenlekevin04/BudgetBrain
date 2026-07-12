@@ -31,12 +31,12 @@ def load_and_clean_data(file_path: str, keep_description: bool = False, fill_gap
     if not keep_amount:
         df = df.drop(['Amount'], axis=1)
 
-    df = df.drop(['State', 'Currency', 'Fee', 'Amount'], axis=1)
+    df = df.drop(['State', 'Currency', 'Fee'], axis=1)
 
     if df['Date'].duplicated().sum() > 0:
         df = df.groupby('Date').last().reset_index()
     
-    if not fill_gaps:
+    if fill_gaps:
         df = df.set_index('Date').asfreq('D').ffill().reset_index()
     return df
 
