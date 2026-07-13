@@ -56,9 +56,9 @@ def generate_response(goal: SavingGoal, savings_rate: float, category: str) -> S
                     "You are a helpful financial assistant. "
                     "You are given precomputed facts about a user's savings goal. "
                     "Explain these facts to the user in plain language. "
+                    "Always use the euro symbol (€) for currency amounts, never dollar signs. "
                     "Do NOT invent or recalculate any numbers — only use the values given to you."
                 )
-
             },
             {
                 "role": "user",
