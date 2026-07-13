@@ -1,9 +1,7 @@
 """
-main.py
-
-Streamlit interface for BudgetBrain. Ties together the full pipeline:
-user question -> LLM extraction -> categorization -> deterministic calculation
--> LLM explanation.
+This module serves as the main entry point for the BudgetBrain Streamlit application. 
+It handles user interactions, processes financial data, and generates responses based on user queries regarding their savings goals. 
+The application reads raw financial data, cleans it, categorizes expenses, calculates required savings rates, and provides actionable advice to users.
 """
 import sys
 from pathlib import Path

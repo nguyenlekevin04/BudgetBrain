@@ -4,7 +4,6 @@ Categorization functions for processing input text and assigning it to predefine
 from sentence_transformers import SentenceTransformer, util
 from model.preprocessing import load_and_clean_data
 import pandas as pd
-import mlflow
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 CATEGORIES = ["fuel", "insurance", "maintenance","groceries", "government fees", "parking", "transfer"]
