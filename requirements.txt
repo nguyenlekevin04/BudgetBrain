@@ -8,3 +8,4 @@ pydantic
 python-dotenv
 sentence-transformers
 mlflow
+streamlit
