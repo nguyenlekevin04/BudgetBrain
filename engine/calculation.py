@@ -5,7 +5,6 @@ It takes into account the current balance and the target amount, and raises exce
 from engine.extraction import SavingGoal
 from model.preprocessing import load_and_clean_data
 from datetime import date
-from pathlib import Path
 
 def calculate_savings_rate(current_balance: float, goal: SavingGoal) -> float:
     """

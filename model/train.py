@@ -4,7 +4,6 @@ Trains a regression model to predict future balances based on historical financi
 from pathlib import Path
 from sklearn.linear_model import LinearRegression
 import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 from model.preprocessing import load_and_clean_data, write_cleaned_data
 from model.features import build_features

@@ -4,7 +4,6 @@ Unit tests for the load_and_clean_data function (preprocessing.py).
 from model.preprocessing import load_and_clean_data
 from pathlib import Path
 import pandas as pd
-import pytest
 
 def test_load_and_clean_data(raw_revolut_csv: Path) -> None:
     """
